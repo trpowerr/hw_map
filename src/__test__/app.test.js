@@ -1,22 +1,15 @@
-import Team, { Bowman, Magician, Swordman } from '../js/app';
+import ErrorRepository from '../js/app';
 
-test('check ADD', () => {
-  const newTeam = new Team();
-  newTeam.add(Bowman);
-  const received = newTeam.toArray()[0] instanceof Bowman;
-  const expected = true;
+test('check validate Error', () => {
+  const error = new ErrorRepository();
+  const received = error.translate(111);
+  const expected = 'Error111';
   expect(received).toBe(expected);
 });
 
-test('check ADD-ALL', () => {
-  let received = null;
-  const newTeam = new Team();
-  newTeam.addAll(Bowman, Magician, Swordman);
-  for (let value of newTeam.toArray()) {
-    if (value instanceof Bowman && Magician && Swordman) {
-      received = true;
-    }
-  }
-  const expected = true;
+test('check invalidate Error', () => {
+  const error = new ErrorRepository();
+  const received = error.translate(777);
+  const expected = 'Unknown error';
   expect(received).toBe(expected);
 });
